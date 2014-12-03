@@ -7,7 +7,28 @@ body {
 }
 
 .nav-tabs {
+    background-color: #ebebeb;
+}
+
+.nav-tabs > li > a {
+    color: #000000;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #000000;
+    background-color: #ebebeb;
+    border: 1px solid transparent;
+    border-bottom-color: #4e5d6c;
+    cursor: default;
+}
+
+.nav-tabs > li > a:hover,
+.nav-tabs > li > a:focus {
+    text-decoration: none;
     background-color: #4e5d6c;
+    color: #ffffff;
 }
 
 .navbar-nav li {
@@ -16,6 +37,10 @@ body {
 
 .dropdown-menu > li > a {
     font-size: 20px;
+}
+
+.jumbotron p {
+    color: #ebebeb;
 }
 
 p, legend, label {
