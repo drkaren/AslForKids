@@ -6,6 +6,10 @@ body {
     background-color: #ebebeb;
 }
 
+.nav-tabs {
+    background-color: #4e5d6c;
+}
+
 .navbar-nav li {
     font-size: 24px;
 }
