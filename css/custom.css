@@ -5,3 +5,15 @@
 body {
     background-color: #ebebeb;
 }
+
+.navbar-nav li {
+    font-size: 24px;
+}
+
+.dropdown-menu > li > a {
+    font-size: 20px;
+}
+
+p, legend, label {
+    color: #000000;
+}
