@@ -1,0 +1,28 @@
+DROP DATABASE IF EXISTS aslkids;
+
+CREATE DATABASE aslkids;
+
+USE aslkids;
+
+CREATE TABLE users (
+  user_id       INT(25)      NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_name     VARCHAR(70)  NOT NULL,
+  user_password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE games (
+  game_id   INT(10)     NOT NULL PRIMARY KEY,
+  game_name VARCHAR(70) NOT NULL
+);
+
+INSERT INTO games (game_id, game_name) VALUES(0, 'Memory Cards');
+INSERT INTO games (game_id, game_name) VALUES(1, 'Mix & Match');
+
+CREATE TABLE scores (
+  score_id INT(25) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  score    INT(25) NOT NULL DEFAULT 0,
+  game_id  INT(10) NOT NULL,
+  user_id  INT(25) NOT NULL,
+  FOREIGN KEY (game_id) REFERENCES games (game_id),
+  FOREIGN KEY (user_id) REFERENCES users (user_id)
+);
