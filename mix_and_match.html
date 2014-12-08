@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="css/main.css" media="screen">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/custom.css">
+  <link href="jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet">
+    <style>
+        #droppable { width: 150px; height: 150px; padding: 0.5em; float: left; margin: 10px; }
+        #draggable, #nondraggable { width: 100px; height: 100px; padding: 0.5em; float: left; margin: 10px 10px 10px 0; }
+    </style>
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="bootstrap/html5shiv.js"></script>
@@ -50,14 +55,37 @@
     </div>
   </div>
 
-  <div class="jumbotron">
-    <h1 style="text-align: center">Welcome!</h1>
-    <p>Hello, world!</p>
-  </div>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+            <div id="draggable" class="ui-widget-content">
+                <p>I'm draggable.</p>
+            </div>
+        </td>
+        <td>
+            <div id="droppable" class="ui-widget-header">
+                <p>Accept draggable.</p>
+            </div>
+        </td>
+      </tr>
+    <tr>
+      <td>
+        <div id="nondraggable" class="ui-widget-content">
+          <p>I'm draggable, but can't be dropped.</p>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
 
 </div>
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="jquery-ui-1.11.2/jquery-ui.js"></script>
   <script src="bootstrap/bootstrap.min.js"></script>
   <script src="bootstrap/usebootstrap.js"></script>
+<script src="js/mix_and_match.js"></script>
 </body>
 </html>
