@@ -8,12 +8,22 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/custom.css">
     <link href="jquery-ui-1.11.2/jquery-ui.css" rel="stylesheet">
-    <link href="css/mix_and_match.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="bootstrap/html5shiv.js"></script>
     <script src="bootstrap/respond.min.js"></script>
     <![endif]-->
+    <style>
+        body {
+            color: #000000;
+        }
+        table  { background-color: white;
+            border: 1px solid gray;
+            border-collapse: collapse; }
+        th, td { padding: 30px; border: 1px solid gray; font-size: 36px; text-align: center; }
+        tr:nth-child(even) { background-color: lightgreen; }
+        tr:first-child { background-color: lightblue; }
+    </style>
 </head>
 <body>
 
@@ -42,8 +52,8 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Games<b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><a href="memory.html">Memory Cards</a></li>
-                        <li><a href="mix_and_match.html">Mix & Match</a></li>
+                        <li><a href="#">Memory Cards</a></li>
+                        <li><a href="#">Mix & Match</a></li>
                     </ul>
                 </li>
             </ul>
@@ -53,54 +63,64 @@
             </ul>
         </div>
     </div>
+<?php
 
-    <h1 align="center">Match the ASL signs with the English text!</h1>
+$db_host = "localhost";
+$db_name = "aslkids";
+$db_user = "root";
+$db_pass = "";
 
-    <div align="center">
-        <form>
-            <input id="numberButton" class="btn-lg" type="button" value="Start Number Game!">
-            <input id="alphabetButton" class="btn-lg" type="button" value="Start Alphabet Game!">
-        </form>
-    </div>
+$database = mysql_connect($db_host, $db_user, $db_pass) or die("MySQL Error: " . mysql_error());
+mysql_select_db($db_name) or die("MySQL Error: " . mysql_error());
 
+$name = $_POST["name"];
+$score = $_POST["score"];
+$game_id = $_POST["gameid"];
+
+$add_score = mysql_query("INSERT INTO scores (username, score, game_id) VALUES('".$name."', '".$score."', '".$game_id."')");
+if($add_score) {
+    echo "<h1>Success</h1>";
+    echo "<p>Your score has been saved!</p>";
+} else {
+    echo "<h1>Error</h1>";
+    echo "<p>Sorry, your score has not been saved.</p>";
+}
+
+$score_query = mysql_query("SELECT username, score FROM scores WHERE game_id = " . $game_id);
+?>
+    <h1 align="center">Scores</h1>
     <table align="center">
-        <tbody id="gameTbody">
-        </tbody>
+        <tr>
+            <th>Name: </th>
+            <th>Score: </th>
+        </tr>
+        <?php
+        // fetch each record in result set
+        for ( $counter = 0; $row = mysql_fetch_row( $score_query );
+              ++$counter )
+        {
+            // build table to display results
+            print( "<tr>" );
+
+            foreach ( $row as $key => $value )
+                print( "<td>$value</td>" );
+
+            print( "</tr>" );
+        }
+        mysql_close( $database );
+        ?>
     </table>
-
-    <div id="dialog-form" title="Submit score">
-        <form id="submitScoreForm" action="saveScore.php" method="post">
-            <fieldset>
-                <label>
-                    Name
-                    <input type="text" name="name" id="name" value="John Doe"
-                           class="text ui-widget-content ui-corner-all">
-                </label>
-
-                <p id="timeLength"></p>
-
-                <p id="scoreResult"></p>
-                <label>
-                    <input hidden="" type="number" name="score" id="score" class="text ui-widget-content ui-corner-all">
-                </label>
-                <label>
-                    <input hidden="" type="number" name="gameid" id="gameid" value="2">
-                </label>
-                <input type="submit" tabindex="-1" style="position: absolute; top: -1000px">
-            </fieldset>
-        </form>
-    </div>
+    <?php
+    if($game_id == 1){
+        print("<h1 align='center'><a href='memory.html'>Go back to Memory Cards game.</a></h1>");
+    } else if($game_id == 2) {
+        print("<h1 align='center'><a href='mix_and_match.html'>Go back to Mix & Match game.</a></h1>");
+    }
+    ?>
 </div>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="jquery-ui-1.11.2/jquery-ui.js"></script>
 <script src="bootstrap/bootstrap.min.js"></script>
 <script src="bootstrap/usebootstrap.js"></script>
-<script src="js/mix_and_match.js"></script>
-<script src="js/jquery.youtubepopup.js"></script>
-<script>
-    window.addEventListener("load", init, false);
-    document.getElementById("numberButton").addEventListener("click", startNumberGame, false);
-    document.getElementById("alphabetButton").addEventListener("click", startAlphabetGame, false);
-</script>
 </body>
 </html>

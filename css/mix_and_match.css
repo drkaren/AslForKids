@@ -1,0 +1,87 @@
+/**
+ * Created by Timothy on 12/10/2014.
+ */
+
+#droppableA,
+#droppableB,
+#droppableC,
+#droppableD,
+#droppableE,
+#droppableF,
+#droppableG,
+#droppableH,
+#droppableI,
+#droppableJ,
+#droppableK,
+#droppableL,
+#droppableM,
+#droppableN,
+#droppableO,
+#droppableP,
+#droppableQ,
+#droppableR,
+#droppableS,
+#droppableT,
+#droppableU,
+#droppableV,
+#droppableW,
+#droppableX,
+#droppableY,
+#droppableZ,
+#droppable1,
+#droppable2,
+#droppable3,
+#droppable4,
+#droppable5,
+#droppable6,
+#droppable7,
+#droppable8,
+#droppable9 {
+    width: 150px;
+    height: 150px;
+    padding: 0.5em;
+    float: left;
+    margin: 10px;
+}
+
+#draggableA,
+#draggableB,
+#draggableC,
+#draggableD,
+#draggableE,
+#draggableF,
+#draggableG,
+#draggableH,
+#draggableI,
+#draggableJ,
+#draggableK,
+#draggableL,
+#draggableM,
+#draggableN,
+#draggableO,
+#draggableP,
+#draggableQ,
+#draggableR,
+#draggableS,
+#draggableT,
+#draggableU,
+#draggableV,
+#draggableW,
+#draggableX,
+#draggableY,
+#draggableZ,
+#draggable1,
+#draggable2,
+#draggable3,
+#draggable4,
+#draggable5,
+#draggable6,
+#draggable7,
+#draggable8,
+#draggable9 {
+    width: 100px;
+    height: 100px;
+    padding: 0.5em;
+    float: left;
+    margin: 10px 10px 10px 0;
+}
