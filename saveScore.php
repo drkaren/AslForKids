@@ -17,12 +17,27 @@
         body {
             color: #000000;
         }
-        table  { background-color: white;
+
+        table {
+            background-color: white;
             border: 1px solid gray;
-            border-collapse: collapse; }
-        th, td { padding: 30px; border: 1px solid gray; font-size: 36px; text-align: center; }
-        tr:nth-child(even) { background-color: lightgreen; }
-        tr:first-child { background-color: lightblue; }
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 30px;
+            border: 1px solid gray;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: lightgreen;
+        }
+
+        tr:first-child {
+            background-color: lightblue;
+        }
     </style>
 </head>
 <body>
@@ -63,57 +78,56 @@
             </ul>
         </div>
     </div>
-<?php
+    <?php
 
-$db_host = "localhost";
-$db_name = "aslkids";
-$db_user = "root";
-$db_pass = "";
+    $db_host = "localhost";
+    $db_name = "aslkids";
+    $db_user = "root";
+    $db_pass = "";
 
-$database = mysql_connect($db_host, $db_user, $db_pass) or die("MySQL Error: " . mysql_error());
-mysql_select_db($db_name) or die("MySQL Error: " . mysql_error());
+    $database = mysql_connect($db_host, $db_user, $db_pass) or die("MySQL Error: " . mysql_error());
+    mysql_select_db($db_name) or die("MySQL Error: " . mysql_error());
 
-$name = $_POST["name"];
-$score = $_POST["score"];
-$game_id = $_POST["gameid"];
+    $name = $_POST["name"];
+    $score = $_POST["score"];
+    $game_id = $_POST["gameid"];
 
-$add_score = mysql_query("INSERT INTO scores (username, score, game_id) VALUES('".$name."', '".$score."', '".$game_id."')");
-if($add_score) {
-    echo "<h1>Success</h1>";
-    echo "<p>Your score has been saved!</p>";
-} else {
-    echo "<h1>Error</h1>";
-    echo "<p>Sorry, your score has not been saved.</p>";
-}
+    $add_score = mysql_query("INSERT INTO scores (username, score, game_id) VALUES('" . $name . "', '" . $score . "', '" . $game_id . "')");
+    if ($add_score) {
+        echo "<h1>Success</h1>";
+        echo "<p>Your score has been saved!</p>";
+    } else {
+        echo "<h1>Error</h1>";
+        echo "<p>Sorry, your score has not been saved.</p>";
+    }
 
-$score_query = mysql_query("SELECT username, score FROM scores WHERE game_id = " . $game_id);
-?>
+    $score_query = mysql_query("SELECT username, score FROM scores WHERE game_id = " . $game_id);
+    ?>
     <h1 align="center">Scores</h1>
     <table align="center">
         <tr>
-            <th>Name: </th>
-            <th>Score: </th>
+            <th>Name:</th>
+            <th>Score:</th>
         </tr>
         <?php
         // fetch each record in result set
-        for ( $counter = 0; $row = mysql_fetch_row( $score_query );
-              ++$counter )
-        {
+        for ($counter = 0; $row = mysql_fetch_row($score_query);
+             ++$counter) {
             // build table to display results
-            print( "<tr>" );
+            print("<tr>");
 
-            foreach ( $row as $key => $value )
-                print( "<td>$value</td>" );
+            foreach ($row as $key => $value)
+                print("<td>$value</td>");
 
-            print( "</tr>" );
+            print("</tr>");
         }
-        mysql_close( $database );
+        mysql_close($database);
         ?>
     </table>
     <?php
-    if($game_id == 1){
+    if ($game_id == 1) {
         print("<h1 align='center'><a href='memory.html'>Go back to Memory Cards game.</a></h1>");
-    } else if($game_id == 2) {
+    } else if ($game_id == 2) {
         print("<h1 align='center'><a href='mix_and_match.html'>Go back to Mix & Match game.</a></h1>");
     }
     ?>

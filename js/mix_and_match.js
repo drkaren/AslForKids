@@ -51,7 +51,7 @@ function setupGame(mode) {
         var randomImageId = Math.floor(1 + Math.random() * matchSize);
 
         if (numberArray.indexOf(randomImageId) == -1) {
-            // Ensure that no two tiles have the same number.
+            // Ensure that no two draggable have the same character to drag.
             var draggableId;
             if (mode == "number") {
                 tr.appendChild(generateData("draggable", randomImageId));
@@ -61,12 +61,13 @@ function setupGame(mode) {
                 draggableId = "#draggable" + alphabet[randomImageId];
             }
 
+            // Ensure that no two droppable have the same character to drop into.
             var randomMatchId = Math.floor(1 + Math.random() * matchSize);
             while (matchArray.indexOf(randomMatchId) != -1) {
                 randomMatchId = Math.floor(1 + Math.random() * matchSize);
             }
-
-            var droppableId, draggableMatchId;
+            var droppableId;
+            var draggableMatchId; // Draggable to match with current droppable.
             if (mode == "number") {
                 tr.appendChild(generateData("droppable", randomMatchId));
                 gameTbody.appendChild(tr);
@@ -79,6 +80,7 @@ function setupGame(mode) {
                 draggableMatchId = "#draggable" + alphabet[randomMatchId];
             }
 
+            // Set up event listeners for draggable and droppable.
             $(draggableId).draggable({revert: "invalid"});
             $(droppableId).droppable({
                 accept: draggableMatchId,
@@ -90,8 +92,8 @@ function setupGame(mode) {
                 }
             });
 
-            numberArray[count] = randomImageId;
-            matchArray[count] = randomMatchId;
+            numberArray[count] = randomImageId; // Store draggable ids to check for future duplicates
+            matchArray[count] = randomMatchId;  // Store droppable ids to check for future duplicates
             count++;
         }
         if (mode == "number") {
